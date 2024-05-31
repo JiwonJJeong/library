@@ -49,3 +49,17 @@ function displayBooks(){
 }
 
 displayBooks();
+
+const newBookDialog = document.querySelector("dialog");
+const showButton = document.querySelector(".new.book.button");
+const closeButton = document.querySelector("dialog button");
+
+// show dialog upon clicking "+" button
+showButton.addEventListener("click", () => {
+    newBookDialog.showModal();
+});
+
+// close dialog upon clicking cancel button
+closeButton.addEventListener("click", () => {
+    newBookDialog.close();
+});
