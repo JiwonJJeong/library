@@ -25,3 +25,7 @@ const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
 addBookToLibrary(theHobbit);
 console.log(myLibrary);
 console.log(myLibrary[0].info());
+
+function displayBooks(){
+    
+}
