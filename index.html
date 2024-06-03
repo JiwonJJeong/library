@@ -22,10 +22,16 @@
     <dialog>
         <form action="" method="post" class="new book form">
             <label for="title-input">Enter title...</label>
-            <input type="text" id="title-input" placeholder="" name="newBookTitle">
+            <input type="text" id="title-input" placeholder="" autofocus required>            
+            <label for="author-input">Author:</label>
+            <input type="text" id="author-input" placeholder="" required> 
+            <label for="page-input">Page Count:</label>
+            <input type="number" id="page-input" placeholder="" required> 
+            <label for="read-input">Read?:</label>
+            <input type="text" id="read-input" placeholder="'yes' or 'no'" name="newBookTitle" required pattern="[Yy]es|[Nn]o"> 
             <button class="submit button" type="submit">Add book</button>
         </form>
-        <button class="cancel button" autofocus>Cancel</button>
+        <button class="cancel button">Cancel</button>
     </dialog>
     <script src="./scripts.js"></script>
 </body>

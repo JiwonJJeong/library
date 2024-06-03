@@ -48,6 +48,7 @@ function displayBooks(){
     })
 }
 
+
 displayBooks();
 
 const newBookDialog = document.querySelector("dialog");
@@ -70,11 +71,17 @@ closeButton.addEventListener("click", () => {
 newBookForm.addEventListener("submit", (e) => {
     e.preventDefault();
     let newTitle = newBookForm.querySelector("#title-input").value;
-    console.log(newTitle);
-    if (newTitle === "") {
-        alert("Please input a title");
+    let newAuthor = newBookForm.querySelector("#author-input").value;
+    let newPages = newBookForm.querySelector("#page-input").value;
+    let newRead = newBookForm.querySelector("#read-input").value;
+    if (newRead.toLowerCase() === "no"){
+        newRead = false;
     } else {
-        newBookDialog.close();
-        newBookForm.reset();
+        newRead = true;
     }
+    const newBook = new Book (newTitle, newAuthor, newPages, newRead);
+    addBookToLibrary(newBook);
+    displayBooks();
+    newBookDialog.close();
+    newBookForm.reset();
 })
