@@ -6,6 +6,7 @@ function Book(title, author, pages, isRead){
     this.author = author;
     this.pages = pages;
     this.isRead = isRead;
+    this.isInTable = false;
 
     this.info = function(){
         let infoText = this.title + " by " + this.author + ", " + this.pages + " pages, ";
@@ -31,20 +32,23 @@ console.log(myLibrary[0].info());
 function displayBooks(){
     const tableOfBooks = document.querySelector("table");
     myLibrary.forEach(bookElement => {
-        const newRowForBook = document.createElement("tr");
-        tableOfBooks.appendChild(newRowForBook);
-        const titleCell = document.createElement("td");
-        titleCell.innerText = bookElement.title;
-        const authorCell = document.createElement("td");
-        authorCell.innerText = bookElement.author;
-        const pagesCell = document.createElement("td");
-        pagesCell.innerText = bookElement.pages;
-        const isReadCell = document.createElement("td");
-        bookElement.isRead ? isReadCell.innerText = "Yes" : isReadCell.innerText = "No";
-        newRowForBook.appendChild(titleCell);
-        newRowForBook.appendChild(authorCell);
-        newRowForBook.appendChild(pagesCell);
-        newRowForBook.appendChild(isReadCell);
+        if (bookElement.isInTable == false){
+            const newRowForBook = document.createElement("tr");
+            tableOfBooks.appendChild(newRowForBook);
+            const titleCell = document.createElement("td");
+            titleCell.innerText = bookElement.title;
+            const authorCell = document.createElement("td");
+            authorCell.innerText = bookElement.author;
+            const pagesCell = document.createElement("td");
+            pagesCell.innerText = bookElement.pages;
+            const isReadCell = document.createElement("td");
+            bookElement.isRead ? isReadCell.innerText = "Yes" : isReadCell.innerText = "No";
+            newRowForBook.appendChild(titleCell);
+            newRowForBook.appendChild(authorCell);
+            newRowForBook.appendChild(pagesCell);
+            newRowForBook.appendChild(isReadCell);
+            bookElement.isInTable = true;
+        }
     })
 }
 
