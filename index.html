@@ -25,7 +25,7 @@
 
     <dialog>
         <h2>Input info for new book</h2>
-        <form action="" method="post" class="new book form">
+        <form action="" method="post" class="new book form" id="new-book-form">
             <label for="title-input">Title:</label>
             <input type="text" id="title-input" placeholder="" autofocus required>
             <label for="author-input">Author:</label>
@@ -35,9 +35,11 @@
             <label for="read-input">Read?:</label>
             <input type="text" id="read-input" placeholder="'yes' or 'no'" name="newBookTitle" required
                 pattern="[Yy]es|[Nn]o">
-            <button class="submit button" type="submit">Add book</button>
         </form>
-        <button class="cancel button">Cancel</button>
+        <div class="buttons">
+            <button form="new-book-form" class="submit button" type="submit">Add book</button>
+            <button class="cancel button">Cancel</button>
+        </div>
     </dialog>
     <script src="./scripts.js"></script>
 </body>
