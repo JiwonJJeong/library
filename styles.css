@@ -1,3 +1,7 @@
+* {
+    --table-background-color: rgb(172, 172, 172);
+}
+
 table, th, td {
     border: 1px solid;
 }
@@ -21,4 +25,23 @@ td {
 
 th, td {
     padding: 2px;
+}
+
+/* center table and add background to it */
+body{
+    display:flex;
+    justify-content: center;
+    align-items: start;
+    background: url("./images/books-4-1421569.jpg");
+    background-size: cover;
+    height:100vh;
+    margin:0;
+}
+
+.table.section{
+    background-color: var(--table-background-color);
+    padding:10px;
+    border-radius: 10px;
+    flex: 1 0 400px;
+    margin: 10vh;
 }
