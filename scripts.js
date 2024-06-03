@@ -25,6 +25,10 @@ function Book(title, author, pages, isRead){
         myLibrary.splice(this.indexInArray, 1);
         updateIndex();
     }
+
+    this.flipReadBool = function(){
+        this.isRead = !this.isRead;
+    }
 }
 
 function addBookToLibrary(bookToAdd) {
@@ -51,18 +55,29 @@ function displayBooks(){
             authorCell.innerText = bookElement.author;
             const pagesCell = document.createElement("td");
             pagesCell.innerText = bookElement.pages;
-            const isReadCell = document.createElement("td");
-            bookElement.isRead ? isReadCell.innerText = "Yes" : isReadCell.innerText = "No";
             newRowForBook.appendChild(titleCell);
             newRowForBook.appendChild(authorCell);
             newRowForBook.appendChild(pagesCell);
-            newRowForBook.appendChild(isReadCell);
+            // add button to switch Read? betwee no and yes
+            const readChangeButton = document.createElement("button");
+            bookElement.isRead ? readChangeButton.innerText = "Yes" : readChangeButton.innerText = "No";
+            readChangeButton.addEventListener("click", (e) =>{
+                if (readChangeButton.innerText === "Yes"){
+                    readChangeButton.innerText = "No";
+                } else {
+                    readChangeButton.innerText = "Yes";
+                }
+                bookElement.flipReadBool();
+            })
+
+            newRowForBook.appendChild(readChangeButton);
             // add button to remove book
             const removeButton = document.createElement("button");
             removeButton.innerText = "x";
             removeButton.addEventListener("click", () => bookElement.removeBook());
             newRowForBook.appendChild(removeButton);
             bookElement.isInTable = true;
+
         }
     })
 }
