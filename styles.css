@@ -1,5 +1,7 @@
 * {
     --table-background-color: rgb(172, 172, 172);
+    --button-color: green;
+    --button-hover-color: rgb(0, 65, 0);
 }
 
 table, th, td {
@@ -44,4 +46,32 @@ body{
     border-radius: 10px;
     flex: 1 0 400px;
     margin: 10vh;
+    display:flex;
+    flex-direction: column;
+}
+
+/* style x and + buttons */
+.new.book.button, .remove{
+    background-color: var(--button-color);
+    border:0;
+    aspect-ratio: 1/1;
+    border-radius:100%;
+    width: 20px;
+    padding:0;
+}
+
+.new.book.button{
+    align-self:end;
+    margin: 10px;
+    width: 30px;
+    font-weight: bold;
+}
+
+.new.book.button:hover, .remove:hover{
+    background-color: var(--button-hover-color);
+}
+
+/* style read buttons */
+.read-button{
+    background-color: red;
 }

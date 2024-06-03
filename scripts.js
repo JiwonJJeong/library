@@ -69,13 +69,17 @@ function displayBooks(){
                 }
                 bookElement.flipReadBool();
             })
-
+            readChangeButton.classList.add("read-button")
             newRowForBook.appendChild(readChangeButton);
+
             // add button to remove book
             const removeButton = document.createElement("button");
+            const cellForRemoveButton = document.createElement("td");
             removeButton.innerText = "x";
+            removeButton.classList.add("remove");
             removeButton.addEventListener("click", () => bookElement.removeBook());
-            newRowForBook.appendChild(removeButton);
+            cellForRemoveButton.appendChild(removeButton);
+            newRowForBook.appendChild(cellForRemoveButton);
             bookElement.isInTable = true;
 
         }
