@@ -65,7 +65,7 @@ table tr.header{
 }
 
 /* style x and + buttons */
-.new.book.button, .remove{
+.remove{
     background-color: var(--button-color);
     border:0;
     aspect-ratio: 1/1;
@@ -75,10 +75,12 @@ table tr.header{
 }
 
 .new.book.button{
+    background-color: var(--button-color);
+    border:0;
     align-self:end;
     margin: 10px;
-    width: 30px;
-    font-weight: bold;
+    border-radius:15px;
+    padding: 8px 12px;
 }
 
 .new.book.button:hover, .remove:hover{
