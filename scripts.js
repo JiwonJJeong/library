@@ -47,11 +47,19 @@ function displayBooks(){
             newRowForBook.appendChild(authorCell);
             newRowForBook.appendChild(pagesCell);
             newRowForBook.appendChild(isReadCell);
+            // add button to remove book
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "x";
+            removeButton.addEventListener("click", () => removeBook());
+            newRowForBook.appendChild(removeButton);
             bookElement.isInTable = true;
         }
     })
 }
 
+function removeBook(){
+    console.log("hi");
+}
 
 displayBooks();
 
