@@ -65,3 +65,16 @@ closeButton.addEventListener("click", () => {
     newBookDialog.close();
     newBookForm.reset();
 });
+
+// submit button will create new book object
+newBookForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let newTitle = newBookForm.querySelector("#title-input").value;
+    console.log(newTitle);
+    if (newTitle === "") {
+        alert("Please input a title");
+    } else {
+        newBookDialog.close();
+        newBookForm.reset();
+    }
+})
