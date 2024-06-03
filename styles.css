@@ -1,7 +1,7 @@
 * {
-    --table-background-color: rgb(172, 172, 172);
-    --button-color: green;
-    --button-hover-color: rgb(0, 65, 0);
+    --table-background-color: rgb(202, 202, 202);
+    --button-color: rgb(128, 83, 0);
+    --button-hover-color: rgb(66, 38, 0);
 }
 
 table, th, td {
@@ -73,5 +73,12 @@ body{
 
 /* style read buttons */
 .read-button{
-    background-color: red;
+    background-color: var(--button-color);
+    border:0;
+    width: 35px;
+    border-radius:2px;
+}
+
+.read-button:hover{
+    background-color: var(--button-hover-color);
 }

@@ -69,8 +69,10 @@ function displayBooks(){
                 }
                 bookElement.flipReadBool();
             })
-            readChangeButton.classList.add("read-button")
-            newRowForBook.appendChild(readChangeButton);
+            readChangeButton.classList.add("read-button");
+            const cellForChangeButton = document.createElement("td");
+            cellForChangeButton.appendChild(readChangeButton);
+            newRowForBook.appendChild(cellForChangeButton);
 
             // add button to remove book
             const removeButton = document.createElement("button");
