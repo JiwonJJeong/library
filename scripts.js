@@ -7,6 +7,7 @@ function Book(title, author, pages, isRead){
     this.pages = pages;
     this.isRead = isRead;
     this.isInTable = false;
+    this.indexInArray = null;
 
     this.info = function(){
         let infoText = this.title + " by " + this.author + ", " + this.pages + " pages, ";
@@ -16,10 +17,19 @@ function Book(title, author, pages, isRead){
             return infoText + "not read yet.";
         }
     }
+
+    this.removeBook = function(){
+        const tableOfBooks = document.querySelector("table");
+        const rowsToRemove = tableOfBooks.querySelectorAll("tr");
+        tableOfBooks.removeChild(rowsToRemove[this.indexInArray+1]);
+        myLibrary.splice(this.indexInArray, 1);
+        updateIndex();
+    }
 }
 
 function addBookToLibrary(bookToAdd) {
     myLibrary.push(bookToAdd);
+    bookToAdd.indexInArray = myLibrary.indexOf(bookToAdd);
 }
 
 const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
@@ -50,15 +60,17 @@ function displayBooks(){
             // add button to remove book
             const removeButton = document.createElement("button");
             removeButton.innerText = "x";
-            removeButton.addEventListener("click", () => removeBook());
+            removeButton.addEventListener("click", () => bookElement.removeBook());
             newRowForBook.appendChild(removeButton);
             bookElement.isInTable = true;
         }
     })
 }
 
-function removeBook(){
-    console.log("hi");
+function updateIndex(){
+    for (let books of myLibrary){
+        books.indexInArray = myLibrary.indexOf(books);
+    }
 }
 
 displayBooks();
