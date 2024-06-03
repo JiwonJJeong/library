@@ -12,24 +12,29 @@
     <div class="table section">
         <table class="book table">
             <caption>All books in library</caption>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Pages</th>
-            <th>Read?</th>
+            <tr class="header">
+                <th>Title</th>
+                <th>Author</th>
+                <th>Pages</th>
+                <th>Read?</th>
+                <th></th>
+            </tr>
         </table>
         <button class="new book button">+</button>
     </div>
 
     <dialog>
+        <h2>Input info for new book</h2>
         <form action="" method="post" class="new book form">
-            <label for="title-input">Enter title...</label>
-            <input type="text" id="title-input" placeholder="" autofocus required>            
+            <label for="title-input">Title:</label>
+            <input type="text" id="title-input" placeholder="" autofocus required>
             <label for="author-input">Author:</label>
-            <input type="text" id="author-input" placeholder="" required> 
+            <input type="text" id="author-input" placeholder="" required>
             <label for="page-input">Page Count:</label>
-            <input type="number" id="page-input" placeholder="" required> 
+            <input type="number" id="page-input" placeholder="" required>
             <label for="read-input">Read?:</label>
-            <input type="text" id="read-input" placeholder="'yes' or 'no'" name="newBookTitle" required pattern="[Yy]es|[Nn]o"> 
+            <input type="text" id="read-input" placeholder="'yes' or 'no'" name="newBookTitle" required
+                pattern="[Yy]es|[Nn]o">
             <button class="submit button" type="submit">Add book</button>
         </form>
         <button class="cancel button">Cancel</button>

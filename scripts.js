@@ -44,7 +44,7 @@ console.log(myLibrary);
 console.log(myLibrary[0].info());
 
 function displayBooks(){
-    const tableOfBooks = document.querySelector("table");
+    const tableOfBooks = document.querySelector(".book.table");
     myLibrary.forEach(bookElement => {
         if (bookElement.isInTable == false){
             const newRowForBook = document.createElement("tr");
