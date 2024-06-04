@@ -23,7 +23,7 @@ function Book(title, author, pages, isRead){
         const rowsToRemove = tableOfBooks.querySelectorAll("tr");
         tableOfBooks.removeChild(rowsToRemove[this.indexInArray+1]);
         const tableWithXButtons = document.querySelector(".table-with-x-buttons");
-        const removeButtons = tableWithXButtons.querySelectorAll("button")
+        const removeButtons = tableWithXButtons.querySelectorAll("button.remove")
         const removeButtonToRemove = removeButtons[this.indexInArray];
         tableWithXButtons.removeChild(removeButtonToRemove);
         myLibrary.splice(this.indexInArray, 1);
@@ -62,7 +62,7 @@ function displayBooks(){
             newRowForBook.appendChild(titleCell);
             newRowForBook.appendChild(authorCell);
             newRowForBook.appendChild(pagesCell);
-            // add button to switch Read? betwee no and yes
+            // add button to switch Read? between no and yes
             const readChangeButton = document.createElement("button");
             bookElement.isRead ? readChangeButton.innerText = "Yes" : readChangeButton.innerText = "No";
             readChangeButton.addEventListener("click", (e) =>{
