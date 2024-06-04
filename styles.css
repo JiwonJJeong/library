@@ -48,7 +48,7 @@ body{
     flex: 1 0 400px;
     margin: 10vh;
     display:flex;
-    flex-direction: column;
+    flex-direction:column;
 }
 
 /* style table */
@@ -64,6 +64,13 @@ table tr.header{
     background-color: var(--button-color);
 }
 
+.table-with-x-buttons{
+    display:grid;
+    grid-template-rows: 46px 23px;
+    grid-auto-rows: 23px;
+    grid-template-columns: 1fr 30px;
+}
+
 /* style x and + buttons */
 .remove{
     background-color: var(--button-color);
@@ -72,6 +79,10 @@ table tr.header{
     border-radius:100%;
     width: 20px;
     padding:0;
+    grid-column: 2/3;
+    justify-self: center;
+    align-self:center;
+    text-align: center;
 }
 
 .new.book.button{

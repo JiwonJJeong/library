@@ -22,6 +22,10 @@ function Book(title, author, pages, isRead){
         const tableOfBooks = document.querySelector("table");
         const rowsToRemove = tableOfBooks.querySelectorAll("tr");
         tableOfBooks.removeChild(rowsToRemove[this.indexInArray+1]);
+        const tableWithXButtons = document.querySelector(".table-with-x-buttons");
+        const removeButtons = tableWithXButtons.querySelectorAll("button")
+        const removeButtonToRemove = removeButtons[this.indexInArray];
+        tableWithXButtons.removeChild(removeButtonToRemove);
         myLibrary.splice(this.indexInArray, 1);
         updateIndex();
     }
@@ -76,12 +80,11 @@ function displayBooks(){
 
             // add button to remove book
             const removeButton = document.createElement("button");
-            const cellForRemoveButton = document.createElement("td");
+            const tableSection = document.querySelector(".table-with-x-buttons")
             removeButton.innerText = "x";
             removeButton.classList.add("remove");
             removeButton.addEventListener("click", () => bookElement.removeBook());
-            cellForRemoveButton.appendChild(removeButton);
-            newRowForBook.appendChild(cellForRemoveButton);
+            tableSection.appendChild(removeButton);
             bookElement.isInTable = true;
 
         }
