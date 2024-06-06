@@ -1,15 +1,18 @@
 const myLibrary=[];
 
 // book object constructor
-function Book(title, author, pages, isRead){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-    this.isInTable = false;
-    this.indexInArray = null;
+class Book {
+    constructor(title, author, pages, isRead){
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.isRead = isRead;
+    }
 
-    this.info = function(){
+    isInTable = false;
+    indexInArray = null;
+
+    info(){
         let infoText = this.title + " by " + this.author + ", " + this.pages + " pages, ";
         if (isRead){
             return infoText + "read.";
@@ -18,7 +21,7 @@ function Book(title, author, pages, isRead){
         }
     }
 
-    this.removeBook = function(){
+    removeBook(){
         const tableOfBooks = document.querySelector("table");
         const rowsToRemove = tableOfBooks.querySelectorAll("tr");
         tableOfBooks.removeChild(rowsToRemove[this.indexInArray+1]);
@@ -30,7 +33,7 @@ function Book(title, author, pages, isRead){
         updateIndex();
     }
 
-    this.flipReadBool = function(){
+    flipReadBool(){
         this.isRead = !this.isRead;
     }
 }
