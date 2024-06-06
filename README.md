@@ -8,5 +8,6 @@ Skills used:
 - Organize JavaScript code through objects and object constructors
 - Manipulate DOM with JS
 - Manage UI with button event listeners and create custom button effects in JS
+- Branch "class-refactor": Organize JS code through classes
 
 Book photo by EmZed on Freeimages.com
