@@ -1,6 +1,6 @@
-const myLibrary=[];
 
-// book object constructor
+
+// book class
 class Book {
     constructor(title, author, pages, isRead){
         this.title = title;
@@ -21,86 +21,81 @@ class Book {
         }
     }
 
-    removeBook(){
-        const tableOfBooks = document.querySelector("table");
-        const rowsToRemove = tableOfBooks.querySelectorAll("tr");
-        tableOfBooks.removeChild(rowsToRemove[this.indexInArray+1]);
-        const tableWithXButtons = document.querySelector(".table-with-x-buttons");
-        const removeButtons = tableWithXButtons.querySelectorAll("button.remove")
-        const removeButtonToRemove = removeButtons[this.indexInArray];
-        tableWithXButtons.removeChild(removeButtonToRemove);
-        myLibrary.splice(this.indexInArray, 1);
-        updateIndex();
-    }
-
     flipReadBool(){
         this.isRead = !this.isRead;
     }
 }
 
-function addBookToLibrary(bookToAdd) {
-    myLibrary.push(bookToAdd);
-    bookToAdd.indexInArray = myLibrary.indexOf(bookToAdd);
-}
+class Library {
+    myLibrary=[];
 
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
-addBookToLibrary(theHobbit);
-const theGreatGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 208, true);
-addBookToLibrary(theGreatGatsby);
-console.log(myLibrary);
-console.log(myLibrary[0].info());
+    addBookToLibrary(bookToAdd) {
+        this.myLibrary.push(bookToAdd);
+        bookToAdd.indexInArray = this.myLibrary.indexOf(bookToAdd);
+    }
 
-function displayBooks(){
-    const tableOfBooks = document.querySelector(".book.table");
-    myLibrary.forEach(bookElement => {
-        if (bookElement.isInTable == false){
-            const newRowForBook = document.createElement("tr");
-            tableOfBooks.appendChild(newRowForBook);
-            const titleCell = document.createElement("td");
-            titleCell.innerText = bookElement.title;
-            const authorCell = document.createElement("td");
-            authorCell.innerText = bookElement.author;
-            const pagesCell = document.createElement("td");
-            pagesCell.innerText = bookElement.pages;
-            newRowForBook.appendChild(titleCell);
-            newRowForBook.appendChild(authorCell);
-            newRowForBook.appendChild(pagesCell);
-            // add button to switch Read? between no and yes
-            const readChangeButton = document.createElement("button");
-            bookElement.isRead ? readChangeButton.innerText = "Yes" : readChangeButton.innerText = "No";
-            readChangeButton.addEventListener("click", (e) =>{
-                if (readChangeButton.innerText === "Yes"){
-                    readChangeButton.innerText = "No";
-                } else {
-                    readChangeButton.innerText = "Yes";
-                }
-                bookElement.flipReadBool();
-            })
-            readChangeButton.classList.add("read-button");
-            const cellForChangeButton = document.createElement("td");
-            cellForChangeButton.appendChild(readChangeButton);
-            newRowForBook.appendChild(cellForChangeButton);
+    displayBooks(){
+        const tableOfBooks = document.querySelector(".book.table");
+        this.myLibrary.forEach(bookElement => {
+            if (bookElement.isInTable == false){
+                const newRowForBook = document.createElement("tr");
+                tableOfBooks.appendChild(newRowForBook);
+                const titleCell = document.createElement("td");
+                titleCell.innerText = bookElement.title;
+                const authorCell = document.createElement("td");
+                authorCell.innerText = bookElement.author;
+                const pagesCell = document.createElement("td");
+                pagesCell.innerText = bookElement.pages;
+                newRowForBook.appendChild(titleCell);
+                newRowForBook.appendChild(authorCell);
+                newRowForBook.appendChild(pagesCell);
+                // add button to switch Read? between no and yes
+                const readChangeButton = document.createElement("button");
+                bookElement.isRead ? readChangeButton.innerText = "Yes" : readChangeButton.innerText = "No";
+                readChangeButton.addEventListener("click", (e) =>{
+                    if (readChangeButton.innerText === "Yes"){
+                        readChangeButton.innerText = "No";
+                    } else {
+                        readChangeButton.innerText = "Yes";
+                    }
+                    bookElement.flipReadBool();
+                })
+                readChangeButton.classList.add("read-button");
+                const cellForChangeButton = document.createElement("td");
+                cellForChangeButton.appendChild(readChangeButton);
+                newRowForBook.appendChild(cellForChangeButton);
+    
+                // add button to remove book
+                const removeButton = document.createElement("button");
+                const tableSection = document.querySelector(".table-with-x-buttons")
+                removeButton.innerText = "x";
+                removeButton.classList.add("remove");
+                removeButton.addEventListener("click", ()=>{this.removeBook(bookElement.indexInArray)});
+                tableSection.appendChild(removeButton);
+                bookElement.isInTable = true;
+            }
+        })
+    }
 
-            // add button to remove book
-            const removeButton = document.createElement("button");
-            const tableSection = document.querySelector(".table-with-x-buttons")
-            removeButton.innerText = "x";
-            removeButton.classList.add("remove");
-            removeButton.addEventListener("click", () => bookElement.removeBook());
-            tableSection.appendChild(removeButton);
-            bookElement.isInTable = true;
-
+    updateIndex(){
+        for (let books of this.myLibrary){
+            books.indexInArray = this.myLibrary.indexOf(books);
         }
-    })
-}
+    }
 
-function updateIndex(){
-    for (let books of myLibrary){
-        books.indexInArray = myLibrary.indexOf(books);
+    removeBook(index){Library
+        const tableOfBooks = document.querySelector("table");
+        const rowsToRemove = tableOfBooks.querySelectorAll("tr");
+        tableOfBooks.removeChild(rowsToRemove[index+1]);
+        const tableWithXButtons = document.querySelector(".table-with-x-buttons");
+        const removeButtons = tableWithXButtons.querySelectorAll("button.remove")
+        const removeButtonToRemove = removeButtons[index];
+        tableWithXButtons.removeChild(removeButtonToRemove);
+        this.myLibrary.splice(index, 1);
+        this.updateIndex();
     }
 }
 
-displayBooks();
 
 const newBookDialog = document.querySelector("dialog");
 const showButton = document.querySelector(".new.book.button");
@@ -131,8 +126,15 @@ newBookForm.addEventListener("submit", (e) => {
         newRead = true;
     }
     const newBook = new Book (newTitle, newAuthor, newPages, newRead);
-    addBookToLibrary(newBook);
-    displayBooks();
+    library.addBookToLibrary(newBook);
+    library.displayBooks();
     newBookDialog.close();
     newBookForm.reset();
 })
+
+const library = new Library();
+const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+library.addBookToLibrary(theHobbit);
+const theGreatGatsby = new Book("The Great Gatsby", "F. Scott Fitzgerald", 208, true);
+library.addBookToLibrary(theGreatGatsby);
+library.displayBooks();
